@@ -3,6 +3,6 @@ class Node
 
   def initialize(args)
     @data = args.fetch("data")
-    @next = args.fetch("next")
+    @next_node = args.fetch("next_node")
   end
 end
