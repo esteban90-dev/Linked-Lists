@@ -91,6 +91,19 @@ class LinkedList
     temp
   end
 
+  def to_s
+    raise ("List is empty.") if empty?
+    current_node = head
+    str = ""
+    while current_node.next_node
+      str << "( #{current_node.data} )"
+      str << " -> "
+      current_node = current_node.next_node
+    end
+    str << "( #{current_node.data} )"
+    str << " -> nil"
+  end
+
   private
 
   def create_node(value, next_node)
