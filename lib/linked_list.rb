@@ -41,6 +41,18 @@ class LinkedList
     sum
   end
 
+  def contains?(value)
+    return false if empty?
+    current_node = head
+    result = false
+    result = true if current_node.data == value
+    while current_node.next_node
+      current_node = current_node.next_node
+      result = true if current_node.data == value
+    end
+    return result
+  end
+
   def at(index)
     raise ("List is empty.") if empty?
     raise ("No node exists at position #{index} in the list.") if index >= size
