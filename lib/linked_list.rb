@@ -1,5 +1,3 @@
-require "./lib/node.rb"
-
 class LinkedList
   attr_accessor :head, :tail
   
@@ -19,7 +17,17 @@ class LinkedList
       self.tail.next_node = new_node.data
       self.tail = new_node
     end
-    puts tail
+  end
+
+  def prepend(value)
+    new_node = create_node(value, nil)
+    if empty?
+      self.head = new_node
+      self.tail = new_node
+    else
+      new_node.next_node = head.data
+      self.head = new_node
+    end
   end
 
   def empty?
@@ -27,12 +35,6 @@ class LinkedList
   end
 
   private
-
-
-
-
-
-  
 
   def create_node(value, next_node)
     Node.new({
@@ -43,19 +45,6 @@ class LinkedList
 
 end
 
-list1 = LinkedList.new
-list1.append("stephen")
-puts list1.head.data
-puts list1.tail.data
-puts " "
-list1.append("regan")
-puts list1.head.data
-puts list1.tail.data
-puts " "
-list1.append("sean")
-puts list1.head.data
-puts list1.tail.data
-puts " "
 
 
 
