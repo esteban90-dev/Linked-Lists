@@ -53,6 +53,19 @@ class LinkedList
     return result
   end
 
+  def find(value)
+    return nil if empty?
+    current_node = head
+    i = 0
+    return i if current_node.data == value
+    while current_node.next_node
+      current_node = current_node.next_node
+      i += 1
+      return i if current_node.data == value
+    end
+    nil
+  end
+
   def at(index)
     raise ("List is empty.") if empty?
     raise ("No node exists at position #{index} in the list.") if index >= size
