@@ -41,6 +41,19 @@ class LinkedList
     sum
   end
 
+  def at(index)
+    raise ("List is empty.") if empty?
+    raise ("No node exists at position #{index} in the list.") if index >= size
+    i = 0
+    current_node = head
+    while current_node.next_node
+      break if i == index
+      current_node = current_node.next_node
+      i += 1
+    end
+    current_node
+  end
+
   private
 
   def create_node(value, next_node)
@@ -49,7 +62,7 @@ class LinkedList
       "next_node" => next_node
     })
   end
-  
+
   def empty?
     true if (head == nil && tail == nil)
   end
