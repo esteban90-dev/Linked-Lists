@@ -54,6 +54,18 @@ class LinkedList
     current_node
   end
 
+  def pop
+    raise ("List is empty.") if empty?
+    current_node = head
+    while current_node.next_node != tail
+      current_node = current_node.next_node
+    end
+    temp = current_node.next_node
+    current_node.next_node = nil
+    self.tail = current_node
+    temp
+  end
+
   private
 
   def create_node(value, next_node)
