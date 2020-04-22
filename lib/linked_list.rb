@@ -57,17 +57,12 @@ class LinkedList
     nil
   end
 
-  def at(index)
+  def at(position)
     raise ("List is empty.") if empty?
-    raise ("No node exists at position #{index} in the list.") if index >= size
-    i = 0
-    current_node = head
-    while current_node.next_node
-      break if i == index
-      current_node = current_node.next_node
-      i += 1
+    raise ("No node exists at position #{position} in the list.") if position >= size
+    self.each_with_index do |node, index|
+      return node if index == position
     end
-    current_node
   end
 
   def pop
