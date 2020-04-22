@@ -85,15 +85,11 @@ class LinkedList
 
   def to_s
     return nil if empty?
-    current_node = head
     str = ""
-    while current_node.next_node
-      str << "( #{current_node.data} )"
-      str << " -> "
-      current_node = current_node.next_node
+    self.each do |node|
+      str << "( #{node.data} ) -> "
     end
-    str << "( #{current_node.data} )"
-    str << " -> nil"
+    str << "nil"
   end
 
   def each
