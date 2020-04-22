@@ -66,19 +66,25 @@ class LinkedList
   end
 
   def pop
-    raise ("List is empty.") if empty?
-    current_node = head
-    while current_node.next_node != tail
-      current_node = current_node.next_node
+    return nil if empty?
+    if self.size == 1
+      temp = head
+      self.head = nil
+      self.tail = nil
+    else
+      temp = tail
+      self.each do |node|
+        if node.next_node == tail
+          node.next_node = nil
+          self.tail = node
+        end
+      end
     end
-    temp = current_node.next_node
-    current_node.next_node = nil
-    self.tail = current_node
     temp
   end
 
   def to_s
-    raise ("List is empty.") if empty?
+    return nil if empty?
     current_node = head
     str = ""
     while current_node.next_node
