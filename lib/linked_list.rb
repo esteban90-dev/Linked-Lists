@@ -41,15 +41,12 @@ class LinkedList
   end
 
   def contains?(value)
-    return false if empty?
-    current_node = head
     result = false
-    result = true if current_node.data == value
-    while current_node.next_node
-      current_node = current_node.next_node
-      result = true if current_node.data == value
+    return result if empty?
+    self.each do |node|
+      result = true if node.data == value
     end
-    return result
+    result
   end
 
   def find(value)
