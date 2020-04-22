@@ -83,6 +83,13 @@ class LinkedList
     temp
   end
 
+  def shift
+    return nil if empty?
+    removed_node = head
+    self.head = head.next_node
+    removed_node
+  end
+
   def to_s
     return nil if empty?
     str = ""
@@ -106,6 +113,24 @@ class LinkedList
         end
       end
     end
+  end
+
+  def remove_at(position)
+    if position >= size || empty?
+      return nil
+    elsif position == size - 1
+      removed_node = self.pop
+    elsif position == 0
+      removed_node = self.shift
+    else
+      self.each_with_index do |node, index|
+        if index + 1 == position
+          removed_node = node.next_node
+          node.next_node = removed_node.next_node
+        end
+      end
+    end
+    removed_node
   end
 
   def each
