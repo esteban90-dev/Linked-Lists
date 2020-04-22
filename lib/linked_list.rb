@@ -92,6 +92,22 @@ class LinkedList
     str << "nil"
   end
 
+  def insert_at(value, position)
+    if position == 0
+      self.prepend(value)
+    elsif position >= size
+      self.append(value)
+    else
+      new_node = create_node(value,nil)
+      self.each_with_index do |node, index|
+        if index + 1 == position
+          new_node.next_node = node.next_node
+          node.next_node = new_node
+        end
+      end
+    end
+  end
+
   def each
     return self.to_enum unless block_given?
     return nil if empty?
