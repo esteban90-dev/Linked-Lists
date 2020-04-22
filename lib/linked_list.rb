@@ -1,4 +1,6 @@
 class LinkedList
+  include Enumerable
+
   attr_accessor :head, :tail
   
   def initialize
@@ -102,6 +104,16 @@ class LinkedList
     end
     str << "( #{current_node.data} )"
     str << " -> nil"
+  end
+
+  def each
+    return self.to_enum unless block_given?
+    return nil if empty?
+    current_node = head
+    while current_node
+      yield current_node
+      current_node = current_node.next_node
+    end
   end
 
   private
