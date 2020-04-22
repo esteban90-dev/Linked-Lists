@@ -51,13 +51,8 @@ class LinkedList
 
   def find(value)
     return nil if empty?
-    current_node = head
-    i = 0
-    return i if current_node.data == value
-    while current_node.next_node
-      current_node = current_node.next_node
-      i += 1
-      return i if current_node.data == value
+    self.each_with_index do |node, index|
+      return index if value == node.data
     end
     nil
   end
@@ -107,6 +102,18 @@ class LinkedList
     while current_node
       yield current_node
       current_node = current_node.next_node
+    end
+  end
+
+  def each_with_index
+    return self.to_enum unless block_given?
+    return nil if empty?
+    index = 0
+    current_node = head
+    while current_node
+      yield current_node, index
+      current_node = current_node.next_node
+      index += 1
     end
   end
 
