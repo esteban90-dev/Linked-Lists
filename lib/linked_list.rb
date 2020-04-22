@@ -33,12 +33,9 @@ class LinkedList
   end
 
   def size
-    return 0 if empty?
-    current_node = head
-    sum = 1
-    while current_node.next_node 
+    sum = 0
+    self.each do |node|
       sum += 1
-      current_node = current_node.next_node
     end
     sum
   end
